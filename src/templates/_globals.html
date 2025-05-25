@@ -15,7 +15,7 @@
 {% macro navbar() -%}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="{{ url_for('route_home') }}">
                 Draft DB
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/drafts">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('route_drafts') }}">
                     Drafts
                 </a>
                 </li>

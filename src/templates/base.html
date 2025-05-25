@@ -1,11 +1,11 @@
-{% import "_macros.html" as _m %}
+{% import "_globals.html" as _g %}
 
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
-    {{ _m.head() }}
+    {{ _g.head() }}
 
     <body>
-        {{ _m.navbar() }}
+        {{ _g.navbar() }}
 
         <div class="container mt-5">
             {% block content %}
