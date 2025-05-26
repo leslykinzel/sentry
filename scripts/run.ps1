@@ -2,4 +2,4 @@ param (
     [string]$port = "8000"
 )
 
-flask --app src/server run --debug --port $port
+flask --app src/sentry/ run --debug --port $port
