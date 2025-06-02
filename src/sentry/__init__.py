@@ -11,8 +11,9 @@ def create_app():
 
     config = {
         "DEBUG": True,
-        "CACHE_TYPE": "SimpleCache",
-        "CACHE_DEFAULT_TIMEOUT": 60
+        "CACHE_TYPE": "MemcachedCache",
+        "CACHE_DEFAULT_TIMEOUT": 60,
+        "CACHE_MEMCACHED_SERVERS": ["memcached:11211"]
     }
 
     app = Flask(__name__)
@@ -21,9 +22,9 @@ def create_app():
     cache = Cache(app)
     limiter = Limiter(get_remote_address, app=app)
 
-    api = opendota.OpenDota()
+    dota = opendota.OpenDota()
 
-    """ Route definitions """
+    """ User Routes """
 
     @app.route("/")
     def route_home():
@@ -44,13 +45,12 @@ def create_app():
     def route_heroes_draft():
         return render_template("heroes/draft/index.html")
 
+    """ Data Routes """
 
-    @cache.cached(timeout=30)
-    @limiter.limit("10 per minute")
     @app.route("/api/live-games")
+    @cache.cached(timeout=60)
+    @limiter.limit("10/minute")
     def api_live_games():
-        return jsonify(api.get_live())
+        return jsonify(dota.get_live())
 
     return app
-
-

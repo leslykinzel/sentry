@@ -1,0 +1,16 @@
+services:
+  memcached:
+    image: memcached:latest
+    ports:
+      - "11211:11211"
+
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - memcached
+    environment:
+      - FLASK_ENV=dev
+    volumes:
+      - ./src:/src
