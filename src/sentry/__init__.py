@@ -56,7 +56,7 @@ def create_app():
     @app.route("/api/heroes")
     @cache.cached(timeout=3600)
     @limiter.limit("1/hour")
-    def api_hero_id():
+    def api_heroes():
         return jsonify(dota.get_heroes())
 
     return app
