@@ -54,7 +54,6 @@ class LiveDotaGame:
     def __lt__(self, other: "LiveDotaGame"):
         return self.avg_mmr < other.avg_mmr
 
-
     def as_html(self):
         mins = self.game_time // 60
         secs = self.game_time % 60
