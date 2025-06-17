@@ -1,3 +1,5 @@
+import json
+from .core.ui.live_games import LiveGames
 from flask import Flask, render_template, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -51,6 +53,13 @@ def create_app():
     @cache.cached(timeout=60)
     @limiter.limit("10/minute")
     def api_live_games():
+        data = json.dumps(dota.get_live())
+        return LiveGames(data).html
+
+    @app.route("/api/live-games-raw")
+    @cache.cached(timeout=60)
+    @limiter.limit("10/minute")
+    def api_live_games_raw():
         return jsonify(dota.get_live())
 
     @app.route("/api/heroes")
