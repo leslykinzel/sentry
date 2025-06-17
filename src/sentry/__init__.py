@@ -53,4 +53,10 @@ def create_app():
     def api_live_games():
         return jsonify(dota.get_live())
 
+    @app.route("/api/heroes")
+    @cache.cached(timeout=3600)
+    @limiter.limit("1/hour")
+    def api_hero_id():
+        return jsonify(dota.get_heroes())
+
     return app
