@@ -10,6 +10,29 @@
             integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" 
             crossorigin="anonymous"
         >
+        <style>
+            .loading-overlay {
+            width: 100%;
+            height: 3rem;
+            background: linear-gradient(90deg,
+                #00000004 25%, 
+                #00000010 40%, 
+                #00000018 50%, 
+                #00000010 60%, 
+                #00000004 75%
+            ) #212529;
+            background-size:300% 100%;
+            animation: l1 2s infinite linear;
+            }
+            @keyframes l1 {
+                0% {
+                    background-position: 100% 0;
+                }
+                100% {
+                    background-position: 0 0;
+                }
+            }
+        </style>
     </head>
 {%- endmacro %}
 
