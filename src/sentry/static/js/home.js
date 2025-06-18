@@ -10,4 +10,3 @@ async function getLiveGames() {
         url:  "/api/live-games"
     });
 }
-
